@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-from sklearn.cluster import DBSCAN
+from sklearn.cluster import DBSCAN, AgglomerativeClustering
 from sklearn.datasets import make_blobs, make_moons
 from sklearn.decomposition import PCA
 from sklearn.metrics import (
@@ -65,6 +65,10 @@ def prepare_features(
 
 def run_dbscan(X: np.ndarray, eps: float, min_samples: int, metric: str) -> np.ndarray:
     return DBSCAN(eps=eps, min_samples=min_samples, metric=metric).fit_predict(X)
+
+
+def run_hierarchical(X: np.ndarray, n_clusters: int, linkage: str) -> np.ndarray:
+    return AgglomerativeClustering(n_clusters=n_clusters, linkage=linkage).fit_predict(X)
 
 
 def k_distances(X: np.ndarray, k: int, metric: str) -> np.ndarray:
